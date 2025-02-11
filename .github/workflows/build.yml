@@ -3,7 +3,7 @@ name: Build Windows App with ToDesktop
 on:
   push:
     branches:
-      - main  # Runs the build when pushing to main branch
+      - main  # Runs the build when pushing to the main branch
 
 jobs:
   build:
@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4  # Updated to the latest version
 
       - name: Install ToDesktop CLI
         run: npm install -g @todesktop/cli
@@ -20,8 +20,7 @@ jobs:
         run: todesktop build --platform=windows --token=${{ secrets.TODESKTOP_API_KEY }}
 
       - name: Upload EXE to Artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4  # Updated to the latest version
         with:
           name: TODOAPP2-Windows
           path: build/  # Adjust if needed based on ToDesktop output
-
