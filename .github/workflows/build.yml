@@ -11,17 +11,19 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4  # Updated to the latest version
+        uses: actions/checkout@v4
 
       - name: Install ToDesktop CLI
         run: npm install -g @todesktop/cli
 
+      - name: Authenticate with ToDesktop
+        run: todesktop login --token=${{ secrets.TODESKTOP_API_KEY }}
+
       - name: Build Windows App
-        run: todesktop build --token=${{ secrets.TODESKTOP_API_KEY }}
+        run: todesktop build
 
       - name: Upload EXE to Artifacts
-        uses: actions/upload-artifact@v4  # Updated to the latest version
+        uses: actions/upload-artifact@v4
         with:
           name: TODOAPP2-Windows
           path: build/  # Adjust if needed based on ToDesktop output
-
