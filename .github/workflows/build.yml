@@ -17,10 +17,11 @@ jobs:
         run: npm install -g @todesktop/cli
 
       - name: Build Windows App
-        run: todesktop build --platform=windows --token=${{ secrets.TODESKTOP_API_KEY }}
+        run: todesktop build --token=${{ secrets.TODESKTOP_API_KEY }}
 
       - name: Upload EXE to Artifacts
         uses: actions/upload-artifact@v4  # Updated to the latest version
         with:
           name: TODOAPP2-Windows
           path: build/  # Adjust if needed based on ToDesktop output
+
